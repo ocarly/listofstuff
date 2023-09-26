@@ -13,5 +13,21 @@ $(function(){
   for (let i = 9; i <=17;i++){
     $(`#${i} .description`).val(localStorage.getItem(`${i}`))
   }
-
+  function colorChanger(){
+    let thisHour = dayjs().hour()
+    console.log(thisHour)
+    $(".time-block").each(function() {
+      let littleBlock = parseInt($(this).attr("id")[1])
+      if (littleBlock < thisHour){
+        $(this).addClass("past")
+      }else if(littleBlock === thisHour){
+        $(this).addClass("present")
+      }else{
+        $(this).addClass("future")
+      }
+    })
+    
+    }
+    colorChanger()
+    setInterval(colorChanger, 15000)
 })
